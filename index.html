@@ -1337,6 +1337,34 @@
     #screen-property .view table{ display:block; overflow-x:auto; -webkit-overflow-scrolling:touch; white-space:nowrap; }
   }
 
+  /* ===== Footer: riga legale (P.IVA / privacy) ===== */
+  .footer-legal{font-size:11px; color:var(--muted); margin:6px 0 0;}
+  .footer-legal a{color:var(--muted); text-decoration:underline; cursor:pointer;}
+  .footer-legal a:hover{color:var(--teal-deep);}
+
+  /* ===== Banner cookie/privacy ===== */
+  .cookie-banner{position:fixed; left:16px; right:16px; bottom:16px; z-index:400; max-width:720px; margin:0 auto;
+    background:#16302a; color:#e8e6dd; border-radius:12px; box-shadow:0 16px 40px -18px rgba(0,0,0,.55);
+    padding:16px 18px; display:flex; align-items:center; gap:16px; flex-wrap:wrap;}
+  .cookie-banner p{margin:0; font-size:13px; line-height:1.5; flex:1; min-width:220px;}
+  .cookie-banner strong{color:#fff;}
+  .cookie-banner a{color:var(--gold); text-decoration:underline; cursor:pointer;}
+  .cookie-banner .btn{flex-shrink:0;}
+
+  /* ===== Overlay informativa privacy ===== */
+  .privacy-overlay{position:fixed; inset:0; z-index:500; background:rgba(12,24,20,.6); display:flex; align-items:center; justify-content:center; padding:20px;}
+  .privacy-box{background:var(--surface); color:var(--text); border:1px solid var(--line); border-radius:14px;
+    max-width:640px; width:100%; max-height:85vh; overflow-y:auto; padding:26px 28px; position:relative; box-shadow:var(--shadow);}
+  .privacy-box h2{font-family:var(--serif,'Fraunces',serif); color:var(--ink); font-size:22px; margin:0 0 4px;}
+  .privacy-box h3{color:var(--ink); font-size:14px; margin:18px 0 5px;}
+  .privacy-box p, .privacy-box li{font-size:13.5px; line-height:1.6; color:var(--text);}
+  .privacy-box ul{margin:0 0 6px; padding-left:20px; display:flex; flex-direction:column; gap:4px;}
+  .privacy-box a{color:var(--teal-deep);}
+  .privacy-upd{font-size:12px; color:var(--muted); font-style:italic; margin:0 0 8px;}
+  .privacy-note{margin-top:16px; padding-top:12px; border-top:1px dashed var(--line); font-size:12px; color:var(--muted);}
+  .privacy-close{position:absolute; top:12px; right:14px; background:none; border:none; font-size:20px; color:var(--muted); cursor:pointer; line-height:1;}
+  .privacy-close:hover{color:var(--ink);}
+
   /* ===== Footer minimale dell'area riservata ===== */
   .app-footer{margin-top:auto; padding-top:22px; border-top:1px solid var(--line); display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; font-size:12px; color:var(--muted);}
   .app-footer a{color:var(--muted); text-decoration:none;}
@@ -1795,6 +1823,7 @@
         <a class="social-chip" href="mailto:infoostella1@gmail.com" aria-label="Email">@</a>
       </div>
       <p class="footer-copy">© Ostella — gestione B&amp;B per proprietari</p>
+      <p class="footer-legal">P.IVA <span style="color:var(--text);">[inserisci la tua P.IVA]</span> · <a href="#" id="footerPrivacy">Privacy &amp; Cookie</a></p>
       <a class="footer-totop" href="#landingRoot">↑ Torna su</a>
     </div>
   </footer>
@@ -2111,9 +2140,73 @@
     </footer>
   </main>
 </div>
+</div><!-- /appRoot -->
+
+<!-- Banner cookie/privacy (sito pubblico) -->
+<div id="cookieBanner" class="cookie-banner hidden">
+  <p>Usiamo solo <strong>archiviazione tecnica</strong> necessaria al funzionamento del sito e dell'area riservata (nessun cookie di profilazione o pubblicità). Continuando accetti la nostra <a href="#" id="cookieBannerLink">Privacy &amp; Cookie policy</a>.</p>
+  <button type="button" class="btn btn-primary btn-small" id="cookieBannerOk">Ho capito</button>
+</div>
+
+<!-- Informativa Privacy & Cookie -->
+<div id="privacyOverlay" class="privacy-overlay hidden" role="dialog" aria-modal="true" aria-label="Privacy e Cookie">
+  <div class="privacy-box">
+    <button type="button" class="privacy-close" id="privacyClose" aria-label="Chiudi">✕</button>
+    <h2>Privacy &amp; Cookie Policy</h2>
+    <p class="privacy-upd">Ultimo aggiornamento: [inserisci data] · Bozza da far validare da un professionista.</p>
+
+    <h3>Titolare del trattamento</h3>
+    <p>Ostella — [Nome e Cognome / Ragione sociale], P.IVA [inserisci], [indirizzo]. Contatto: <a href="mailto:infoostella1@gmail.com">infoostella1@gmail.com</a>.</p>
+
+    <h3>Quali dati raccogliamo</h3>
+    <ul>
+      <li><strong>Richieste dal modulo contatti:</strong> nome, email, telefono, città e note che ci invii.</li>
+      <li><strong>Account area riservata:</strong> email e password (la password è gestita in forma cifrata dal nostro fornitore di autenticazione, noi non la vediamo).</li>
+      <li><strong>Dati di gestione:</strong> per le strutture che gestiamo trattiamo prenotazioni, incassi e contatti degli ospiti, per conto del proprietario.</li>
+    </ul>
+
+    <h3>Perché li trattiamo e base giuridica</h3>
+    <ul>
+      <li>Rispondere alle tue richieste ed erogare il servizio (esecuzione di un contratto o misure precontrattuali).</li>
+      <li>Adempimenti di legge legati all'attività ricettiva e fiscale (obbligo legale).</li>
+    </ul>
+
+    <h3>Dove risiedono i dati (responsabili)</h3>
+    <p>Utilizziamo fornitori che trattano i dati per nostro conto, con server in Unione Europea ove possibile: <strong>Supabase</strong> (database e autenticazione) e <strong>Netlify</strong> (hosting del sito). Non vendiamo i tuoi dati a terzi.</p>
+
+    <h3>Per quanto tempo</h3>
+    <p>Conserviamo i dati per il tempo necessario a gestire la richiesta o il rapporto, e comunque nei limiti previsti dalla legge; poi vengono cancellati o resi anonimi.</p>
+
+    <h3>I tuoi diritti</h3>
+    <p>Puoi chiedere in ogni momento accesso, rettifica, cancellazione, limitazione, portabilità e opposizione, scrivendo a <a href="mailto:infoostella1@gmail.com">infoostella1@gmail.com</a>. Puoi inoltre rivolgerti al Garante per la protezione dei dati personali.</p>
+
+    <h3>Cookie e archiviazione tecnica</h3>
+    <p>Il sito <strong>non usa cookie di profilazione o pubblicitari</strong>. Usiamo solo archiviazione tecnica nel tuo browser, necessaria per: mantenere l'accesso all'area riservata, ricordare la preferenza di tema (chiaro/scuro) e il consenso a questo avviso. I caratteri tipografici sono forniti da Google Fonts.</p>
+
+    <p class="privacy-note">Questo testo è una <strong>bozza di orientamento</strong>: prima della pubblicazione definitiva fallo verificare da un consulente e inserisci i dati mancanti (P.IVA, indirizzo, data).</p>
+  </div>
+</div>
 
 <div class="modal-overlay hidden" id="modalOverlay"><div class="modal" id="modalContent" role="dialog" aria-modal="true" aria-label="Finestra di dialogo"></div></div>
-</div><!-- /appRoot -->
+<script>
+/* Banner cookie + apertura/chiusura informativa Privacy & Cookie */
+(function(){
+  var KEY='ostella_cookie_ok';
+  var banner=document.getElementById('cookieBanner');
+  var overlay=document.getElementById('privacyOverlay');
+  function openPrivacy(e){ if(e) e.preventDefault(); if(overlay) overlay.classList.remove('hidden'); }
+  function closePrivacy(){ if(overlay) overlay.classList.add('hidden'); }
+  var accepted=false; try{ accepted=!!localStorage.getItem(KEY); }catch(e){}
+  if(banner && !accepted) banner.classList.remove('hidden');
+  var ok=document.getElementById('cookieBannerOk');
+  if(ok) ok.addEventListener('click', function(){ try{localStorage.setItem(KEY,'1');}catch(e){} if(banner) banner.classList.add('hidden'); });
+  var bl=document.getElementById('cookieBannerLink'); if(bl) bl.addEventListener('click', openPrivacy);
+  var fp=document.getElementById('footerPrivacy'); if(fp) fp.addEventListener('click', openPrivacy);
+  var pc=document.getElementById('privacyClose'); if(pc) pc.addEventListener('click', closePrivacy);
+  if(overlay) overlay.addEventListener('click', function(e){ if(e.target===overlay) closePrivacy(); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') closePrivacy(); });
+})();
+</script>
 
 <script>
 (function(){
@@ -2487,6 +2580,7 @@
       photos: p.photos || [], roomCount: (p.rooms||[]).length,
       minPrice: prices.length ? Math.min(...prices) : null,
       phone: pub.phone || '', email: pub.email || '', whatsapp: pub.whatsapp || '',
+      cin: pub.cin || '',
       updatedAt: Date.now()
     };
   }
@@ -3326,6 +3420,7 @@
           <div class="field"><label>Email (opzionale)</label><input type="email" name="email" value="${escapeHtml(pub.email||'')}"></div>
         </div>
         <div class="field"><label>WhatsApp (opzionale — numero con prefisso, es. 393331234567)</label><input name="whatsapp" value="${escapeHtml(pub.whatsapp||'')}"></div>
+        <div class="field"><label>CIN — Codice Identificativo Nazionale</label><input name="cin" value="${escapeHtml(pub.cin||'')}" placeholder="Obbligatorio per legge negli annunci"><p class="field-hint">Va indicato nella vetrina e in tutti gli annunci (Airbnb, Booking…).</p></div>
         <div class="field">${customSelectHtml('published', [
             {value:'no', label:'Non pubblicata'},
             {value:'yes', label:'Pubblicata (visibile a chi ha il link)'}
@@ -3386,6 +3481,7 @@
         phone: fd.get('phone').trim(),
         email: fd.get('email').trim(),
         whatsapp: fd.get('whatsapp').trim(),
+        cin: (fd.get('cin')||'').trim(),
         published: fd.get('published') === 'yes'
       };
       await saveData();
@@ -4148,6 +4244,7 @@
         ${contactSection}
       </div>
       <footer class="site-footer" style="max-width:940px;margin:0 auto;padding:16px 22px 60px;">
+        ${d.cin ? `<p class="footer-copy" style="margin-bottom:4px;">CIN: ${escapeHtml(d.cin)}</p>` : ''}
         <p class="footer-copy">© Ostella — vetrina gestita tramite Ostella</p>
       </footer>
     </div>`;
