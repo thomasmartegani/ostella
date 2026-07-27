@@ -2229,6 +2229,9 @@
   // ---------- BACKEND SUPABASE ----------
   const SUPABASE_URL = 'https://jzarbmfhazeaepfioxnt.supabase.co';
   const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp6YXJibWZoYXplYWVwZmlveG50Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQ4Nzk4NzIsImV4cCI6MjEwMDQ1NTg3Mn0.6XuUwz-t-SMROPAP0AKbwxRgvr-S1yQyosStu6MGK5I';
+  // Catturiamo l'indirizzo PRIMA che il client Supabase lo ripulisca:
+  // serve a riconoscere il link di recupero password ricevuto via email.
+  const INITIAL_HASH = window.location.hash || '';
   const SB = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
   function isoDate(d){ return localISO(d); }
@@ -5169,7 +5172,8 @@
       return;
     }
     // Link di recupero password: l'indirizzo contiene type=recovery
-    const hash = window.location.hash || '';
+    // (usiamo l'indirizzo catturato all'avvio, perché Supabase lo ripulisce)
+    const hash = INITIAL_HASH || window.location.hash || '';
     if(hash.indexOf('type=recovery') >= 0){
       passwordRecoveryMode = true;
       showAuthScreen();
