@@ -1881,24 +1881,21 @@
         <label for="regPassword2">Conferma password</label>
         <input id="regPassword2" name="password2" type="password" autocomplete="new-password">
         <p class="auth-error hidden" id="registerError"></p>
+        <p class="auth-success hidden" id="registerSuccess"></p>
         <button class="btn btn-primary" type="submit">Crea account</button>
       </form>
 
       <form id="resetForm" class="auth-form hidden">
-        <p class="auth-reset-intro">Inserisci l'email dell'account e scegli una nuova password. Dato che le credenziali vivono solo in questo browser, non serve nessuna email di conferma: basta impostarla di nuovo.</p>
+        <p class="auth-reset-intro">Inserisci l'email del tuo account: ti invieremo un link per scegliere una nuova password.</p>
         <label for="resetEmail">Email</label>
         <input id="resetEmail" name="email" type="email" autocomplete="email">
-        <label for="resetPassword">Nuova password</label>
-        <input id="resetPassword" name="password" type="password" autocomplete="new-password">
-        <label for="resetPassword2">Conferma nuova password</label>
-        <input id="resetPassword2" name="password2" type="password" autocomplete="new-password">
         <p class="auth-error hidden" id="resetError"></p>
         <p class="auth-success hidden" id="resetSuccess"></p>
-        <button class="btn btn-primary" type="submit">Reimposta password</button>
+        <button class="btn btn-primary" type="submit">Inviami il link</button>
         <button type="button" class="link-ghost auth-back-link" id="backToLoginLink">← Torna al login</button>
       </form>
 
-      <p class="auth-note" id="authNote">Le credenziali restano salvate in questo browser: comodo per tenere fuori occhi indiscreti, ma non è un sistema di sicurezza di livello bancario — non riusare qui una password importante.</p>
+      <p class="auth-note" id="authNote">Il tuo account è protetto: la password è custodita in forma cifrata dal nostro servizio di autenticazione e puoi accedere da qualsiasi dispositivo. Alla registrazione ti inviamo un'email di conferma.</p>
     </div>
   </div>
 </div>
@@ -2681,11 +2678,18 @@
     const { data, error } = await SB.auth.signUp({ email:key, password,
       options:{ data:{ name, role: isClient ? 'cliente' : 'admin', property_id, owner_email } } });
     if(error){
-      const msg = /registered|already/i.test(error.message||'') ? 'Esiste già un account con questa email.' : (error.message || 'Registrazione non riuscita.');
+      const raw = error.message || '';
+      let msg;
+      if(/registered|already/i.test(raw)) msg = 'Esiste già un account con questa email.';
+      else if(/rate limit/i.test(raw)) msg = 'Abbiamo inviato troppe email in poco tempo. Riprova tra qualche minuto.';
+      else if(/invalid/i.test(raw) && /email/i.test(raw)) msg = "Indirizzo email non valido: controlla di averlo scritto bene.";
+      else if(/password/i.test(raw)) msg = 'La password non è valida: usa almeno 6 caratteri.';
+      else msg = 'Registrazione non riuscita. Riprova tra poco.';
       return {ok:false, error:msg};
     }
     if(!data.session){
-      return {ok:false, error:"Ti abbiamo inviato un'email di conferma: aprila e clicca il link, poi torna qui e accedi."};
+      // Conferma email attiva: l'account esiste ma va confermato dal link ricevuto.
+      return {ok:false, needsConfirm:true, error:"Ti abbiamo inviato un'email di conferma: aprila e clicca il link, poi torna qui e accedi."};
     }
     currentAuthUid = data.user.id;
     const prof = await ensureProfile(data.user);
@@ -2702,11 +2706,19 @@
     const prof = await ensureProfile(data.user);
     return {ok:true, user: profileToUser(prof)};
   }
+  // Traduce i messaggi tecnici del servizio in frasi comprensibili.
+  function authErrorMessage(raw){
+    const m = (raw || '').toLowerCase();
+    if(m.indexOf('rate limit') >= 0) return 'Abbiamo inviato troppe email in poco tempo. Riprova tra qualche minuto.';
+    if(m.indexOf('invalid') >= 0 && m.indexOf('email') >= 0) return "Indirizzo email non valido: controlla di averlo scritto bene.";
+    if(m.indexOf('not found') >= 0 || m.indexOf('user') >= 0 && m.indexOf('exist') >= 0) return "Non risulta nessun account con questa email.";
+    return "Non siamo riusciti a inviare l'email. Riprova tra poco.";
+  }
   async function resetPassword(email){
     const key = email.toLowerCase();
     const redirect = window.location.href.split('#')[0].split('?')[0];
     const { error } = await SB.auth.resetPasswordForEmail(key, { redirectTo: redirect });
-    if(error) return {ok:false, error: error.message || "Impossibile inviare l'email di reset."};
+    if(error) return {ok:false, error: authErrorMessage(error.message)};
     return {ok:true, emailSent:true};
   }
   async function setSession(){ /* la sessione è gestita da Supabase */ }
@@ -5021,14 +5033,20 @@
       e.preventDefault();
       const fd = new FormData(registerForm);
       const errEl = document.getElementById('registerError');
+      const okEl = document.getElementById('registerSuccess');
       errEl.classList.add('hidden');
+      if(okEl) okEl.classList.add('hidden');
       const name = fd.get('name').trim(), email = fd.get('email').trim(), pass = fd.get('password'), pass2 = fd.get('password2');
       const role = fd.get('role') === 'cliente' ? 'cliente' : 'admin';
       const propertyCode = (fd.get('propertyCode') || '').trim();
       if(pass !== pass2){ errEl.textContent = 'Le due password non coincidono.'; errEl.classList.remove('hidden'); return; }
       if(pass.length < 6){ errEl.textContent = 'La password deve avere almeno 6 caratteri.'; errEl.classList.remove('hidden'); return; }
       const res = await registerUser(name, email, pass, role, propertyCode);
-      if(!res.ok){ errEl.textContent = res.error; errEl.classList.remove('hidden'); return; }
+      if(!res.ok){
+        // Registrazione riuscita ma da confermare via email: è un esito positivo, non un errore.
+        if(res.needsConfirm && okEl){ okEl.textContent = res.error; okEl.classList.remove('hidden'); registerForm.reset(); return; }
+        errEl.textContent = res.error; errEl.classList.remove('hidden'); return;
+      }
       currentUserEmail = res.user.email.toLowerCase();
       currentUserRole = res.user.role || 'admin';
       currentClientPropertyId = res.user.propertyId || null;
@@ -5103,10 +5121,59 @@
   })();
 
   // ---------- INIT ----------
+  // ---------- RECUPERO PASSWORD ----------
+  // Quando l'utente arriva dal link ricevuto via email, gli chiediamo la nuova password.
+  let passwordRecoveryMode = false;
+  function openNewPasswordModal(){
+    modalContent.innerHTML = `
+      <h2>Scegli una nuova password</h2>
+      <p style="font-size:13.5px;color:var(--muted);margin-bottom:16px;">Inserisci la password che vuoi usare d'ora in poi per accedere alla tua area riservata.</p>
+      <form id="newPwdForm">
+        <div class="field"><label>Nuova password</label><input required type="password" name="password" autocomplete="new-password"></div>
+        <div class="field"><label>Conferma password</label><input required type="password" name="password2" autocomplete="new-password"></div>
+        <p class="auth-error hidden" id="newPwdError"></p>
+        <div class="modal-actions">
+          <button type="submit" class="btn btn-primary">Salva password</button>
+        </div>
+      </form>`;
+    openModal();
+    document.getElementById('newPwdForm').addEventListener('submit', async e=>{
+      e.preventDefault();
+      const fd = new FormData(e.target);
+      const p1 = fd.get('password'), p2 = fd.get('password2');
+      const errEl = document.getElementById('newPwdError');
+      errEl.classList.add('hidden');
+      if(p1 !== p2){ errEl.textContent = 'Le due password non coincidono.'; errEl.classList.remove('hidden'); return; }
+      if((p1||'').length < 6){ errEl.textContent = 'La password deve avere almeno 6 caratteri.'; errEl.classList.remove('hidden'); return; }
+      const { error } = await SB.auth.updateUser({ password: p1 });
+      if(error){ errEl.textContent = 'Non è stato possibile salvare la password. Riprova.'; errEl.classList.remove('hidden'); return; }
+      passwordRecoveryMode = false;
+      closeModal();
+      toast('Password aggiornata. Ora puoi usarla per accedere.', 'ok');
+      const s = await getSession();
+      if(s && s.email){
+        currentUserEmail = s.email; currentUserRole = s.role || 'admin';
+        currentClientPropertyId = s.propertyId || null; currentClientOwnerEmail = s.ownerEmail || null;
+        await enterApp();
+      }
+    });
+  }
+  SB.auth.onAuthStateChange(function(event){
+    if(event === 'PASSWORD_RECOVERY'){ passwordRecoveryMode = true; openNewPasswordModal(); }
+  });
+
   (async function init(){
     const vetrinaId = new URLSearchParams(window.location.search).get('vetrina');
     if(vetrinaId){
       await initPublicListingPage(vetrinaId);
+      return;
+    }
+    // Link di recupero password: l'indirizzo contiene type=recovery
+    const hash = window.location.hash || '';
+    if(hash.indexOf('type=recovery') >= 0){
+      passwordRecoveryMode = true;
+      showAuthScreen();
+      setTimeout(openNewPasswordModal, 400);
       return;
     }
     const session = await getSession();
