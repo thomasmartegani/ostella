@@ -191,6 +191,7 @@
   .loc-row{display:flex; align-items:center; gap:12px; flex-wrap:wrap;}
   .loc-status{font-size:12.5px; color:var(--muted);}
   .field-hint{font-size:11.5px; color:var(--muted); margin:8px 0 0;}
+  .muted{color:var(--muted);}
   .client-code-line{font-size:12.5px; color:var(--muted); margin-top:8px; display:flex; align-items:center; gap:8px; flex-wrap:wrap;}
   .client-code-line .client-code{background:var(--bg); padding:2px 7px; border-radius:5px; color:var(--ink); font-size:12px;}
   .photo-grid{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:10px;}
@@ -1488,6 +1489,7 @@
       <a href="#chi-siamo">Chi siamo</a>
       <a href="#strutture">Le nostre strutture</a>
       <a href="#come-funziona">Come funziona</a>
+      <a href="#imposte">Imposte</a>
       <a href="#perche">Perché Ostella</a>
       <a href="#faq">FAQ</a>
       <a href="#contatti">Contatti</a>
@@ -1674,6 +1676,47 @@
     </div>
   </section>
 
+  <section class="land-section" id="imposte">
+    <div class="land-kicker">Adempimenti</div>
+    <h2 class="land-h2">La tassa di soggiorno la gestiamo noi.<br>Anche quando è un rebus.</h2>
+    <p class="land-lead">È l'adempimento che manda in confusione più proprietari, perché nessuno spiega mai come funziona davvero. Se affitti da solo tocca a te; se affidi la casa a Ostella, non ci pensi più.</p>
+
+    <div class="steps">
+      <div class="step"><div class="step-num">01</div><h3>L'ospite la paga</h3><p>Due o tre euro a persona per notte, sopra il prezzo del soggiorno. Quei soldi non sono tuoi: sono del Comune.</p></div>
+      <div class="step"><div class="step-num">02</div><h3>Chi gestisce la raccoglie</h3><p>La tiene da parte e la gira al Comune, con un modulo in cui dichiara quante notti sono state vendute.</p></div>
+      <div class="step"><div class="step-num">03</div><h3>Il Comune la incassa</h3><p>A scadenze fisse, diverse da comune a comune. Se il conto è sbagliato o la scadenza salta, la sanzione arriva a chi gestisce.</p></div>
+    </div>
+
+    <div class="why-grid" style="margin-top:34px">
+      <div class="why-card">
+        <h3>Perché si sdoppia il conto</h3>
+        <p>In oltre mille comuni italiani Airbnb ha un accordo col Comune e versa la tassa direttamente. Booking, quasi sempre, no. Chi prenota al telefono nemmeno. Così una parte è già stata versata e una parte no — ma al Comune vanno dichiarate tutte e due.</p>
+      </div>
+      <div class="why-card">
+        <h3>Un esempio vero</h3>
+        <p>Un mese, un appartamento a Como: <strong>252 €</strong> di tassa dovuta al Comune, di cui <strong>138 €</strong> già versati da Airbnb. Restano <strong>114 €</strong> da versare — ma nel modulo va scritto 252, non 114.</p>
+      </div>
+      <div class="why-card">
+        <h3>I due errori che costano</h3>
+        <p>Versare il totale significa pagare due volte quello che la piattaforma aveva già versato: soldi che non tornano indietro. Dichiarare solo la propria quota è una dichiarazione incompleta, e il Comune incrocia i dati.</p>
+      </div>
+      <div class="why-card">
+        <h3>Ogni Comune fa da sé</h3>
+        <p>Non esiste una regola nazionale: cambiano tariffa, dopo quante notti si smette di pagare, chi è esente, ogni quanto si versa e con quale modulo. Chi ha case in comuni diversi rifà il lavoro da capo ogni volta.</p>
+      </div>
+      <div class="why-card">
+        <h3>Come lo facciamo noi</h3>
+        <p>Per ogni struttura teniamo il regolamento del suo Comune, con la data in cui l'abbiamo verificato e il link al documento. Il conto lo fa il sistema sulle prenotazioni reali, separando quello che ha già versato la piattaforma da quello che resta da versare.</p>
+      </div>
+      <div class="why-card">
+        <h3>Tu lo vedi, non lo fai</h3>
+        <p>Nella tua area riservata trovi il prospetto del periodo: notti imponibili, esenzioni applicate, quanto è dovuto e quanto è già stato versato. Trasparente, come tutto il resto.</p>
+      </div>
+    </div>
+
+    <p class="land-lead" style="margin-top:30px">Nota: Ostella non sostituisce il tuo commercialista. Prepariamo i conti e i documenti, con le fonti verificabili; le scelte fiscali restano tue e del tuo professionista.</p>
+  </section>
+
   <section class="land-section why" id="perche">
     <div class="land-kicker">Perché scegliere Ostella</div>
     <h2 class="land-h2">Il tuo immobile, gestito come faremmo con il nostro.</h2>
@@ -1740,6 +1783,10 @@
       <div class="faq-item open">
         <button type="button" class="faq-q" aria-expanded="true"><span>Quanto costa il servizio?</span><span class="faq-icon"></span></button>
         <div class="faq-a"><p>Durante il periodo di lancio applichiamo un costo simbolico, riservato ai primi proprietari che entrano a far parte di Ostella. Il costo esatto per il tuo immobile te lo indichiamo dopo la consulenza gratuita iniziale, in base a tipologia e posizione.</p></div>
+      </div>
+      <div class="faq-item">
+        <button type="button" class="faq-q" aria-expanded="false"><span>Chi si occupa della tassa di soggiorno e degli adempimenti?</span><span class="faq-icon"></span></button>
+        <div class="faq-a"><p>Ce ne occupiamo noi. Per ogni struttura teniamo il regolamento del Comune aggiornato e verificato, e il conto della tassa lo fa il sistema sulle prenotazioni reali, separando quello che Airbnb ha già versato da quello che resta da versare. Nella tua area riservata trovi il prospetto di ogni periodo. Restano fuori le scelte fiscali sul tuo reddito, che vanno fatte con il tuo commercialista.</p></div>
       </div>
       <div class="faq-item">
         <button type="button" class="faq-q" aria-expanded="false"><span>Devo firmare un contratto di esclusiva a lungo termine?</span><span class="faq-icon"></span></button>
@@ -1932,6 +1979,7 @@
       <button class="nav-item" data-view="bookings"><span class="nav-dot"></span>Prenotazioni</button>
       <button class="nav-item" data-view="pulizie"><span class="nav-dot"></span>Pulizie</button>
       <button class="nav-item" data-view="revenue"><span class="nav-dot"></span>Fatturato</button>
+      <button class="nav-item" data-view="imposta"><span class="nav-dot"></span>Tassa di soggiorno</button>
 
       <button class="nav-item" data-view="contacts"><span class="nav-dot"></span>Contatti</button>
       <button class="nav-item" data-view="reviews"><span class="nav-dot"></span>Recensioni</button>
@@ -2061,6 +2109,59 @@
             <table>
               <thead><tr><th>Ospite</th><th>Camera</th><th>Check-in</th><th>Notti</th><th>Importo</th></tr></thead>
               <tbody id="revenueTbody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="view" id="view-imposta">
+          <div class="revenue-card">
+            <h3>Il regolamento di questo Comune</h3>
+            <p class="muted" style="margin:0 0 14px">Va letto sul regolamento vigente del Comune e sulla delibera delle tariffe, che è quasi sempre un documento separato e più recente. <strong>Prendere la tariffa dal regolamento vecchio è l'errore più comune.</strong></p>
+            <div class="field-row">
+              <div class="field"><label>Tariffa a persona per notte (€)</label><input type="number" min="0" step="0.10" id="impTariffa"></div>
+              <div class="field"><label>Si paga per max notti</label><input type="number" min="0" id="impTetto" title="Oltre questo numero di notti consecutive l'ospite non paga più. 0 = nessun limite"></div>
+              <div class="field"><label>Airbnb versa al Comune?</label><select id="impAirbnb">
+                <option value="si">Sì, c'è la convenzione</option>
+                <option value="no">No, verso io</option>
+              </select></div>
+            </div>
+            <div class="field-row">
+              <div class="field"><label>Fonte (link al regolamento)</label><input type="url" id="impFonte" placeholder="https://comune..."></div>
+              <div class="field"><label>Verificato il</label><input type="date" id="impVerificato"></div>
+              <div class="field" style="align-self:end"><button class="btn btn-primary" id="impSalva">Salva regolamento</button></div>
+            </div>
+            <p class="muted" id="impStatoRegola" style="margin:12px 0 0"></p>
+          </div>
+
+          <div class="inline-tools">
+            <label class="muted" for="impPeriodo" style="align-self:center">Periodo</label>
+            <select id="impPeriodo" class="btn btn-ghost btn-small"></select>
+            <button class="btn btn-ghost btn-small" id="impEsporta">↓ Scarica il dettaglio (CSV)</button>
+          </div>
+
+          <div class="stats-grid" id="impStats"></div>
+
+          <div class="revenue-card">
+            <h3>Il conto del periodo</h3>
+            <table>
+              <tbody id="impRiepilogo"></tbody>
+            </table>
+            <p class="muted" id="impAvviso" style="margin:14px 0 0"></p>
+          </div>
+
+          <div class="revenue-card">
+            <h3>Per canale</h3>
+            <table>
+              <thead><tr><th>Canale</th><th>Notti imponibili</th><th>Tassa</th><th>Chi la versa</th></tr></thead>
+              <tbody id="impCanali"></tbody>
+            </table>
+          </div>
+
+          <div class="revenue-card">
+            <h3>Dettaglio per prenotazione</h3>
+            <table>
+              <thead><tr><th>Ospite</th><th>Check-in</th><th>Notti</th><th>Ospiti</th><th>Canale</th><th>Imponibili</th><th>Tassa</th></tr></thead>
+              <tbody id="impRighe"></tbody>
             </table>
           </div>
         </div>
@@ -3155,7 +3256,8 @@
     pulizie: ["Pulizie", "Organizza il cambio biancheria e le pulizie tra un ospite e l'altro."],
     revenue: ["Fatturato", "Incassi e ricavi della struttura."],
     contacts: ["Contatti", "L'anagrafica di chi ha soggiornato qui."],
-    reviews: ["Recensioni", "Cosa dicono gli ospiti della tua struttura."]
+    reviews: ["Recensioni", "Cosa dicono gli ospiti della tua struttura."],
+    imposta: ["Tassa di soggiorno", "Quanto ha già versato la piattaforma e quanto resta da versare al Comune."]
   };
   const mainActionByView = {
     home: {label:"+ Aggiungi camera", action:()=>openRoomModal(null)},
@@ -3164,7 +3266,8 @@
     pulizie: {label:"+ Nuova pulizia", action:()=>openCleaningModal(null)},
     revenue: null,
     contacts: null,
-    reviews: {label:"+ Aggiungi recensione", action:()=>openReviewModal(null)}
+    reviews: {label:"+ Aggiungi recensione", action:()=>openReviewModal(null)},
+    imposta: null
   };
 
   function setMainAction(view){
@@ -3245,6 +3348,189 @@
       setMainAction(view);
       renderPropertyWorkspace();
     });
+  });
+
+  // ---------- TASSA DI SOGGIORNO ----------
+  // Il conto lo fa questa funzione e nessun'altra: entrano le prenotazioni e il
+  // regolamento del Comune, esce quanto va dichiarato e quanto resta da versare.
+  // Non tocca i dati: li legge e restituisce numeri.
+  function calcolaImposta(prenotazioni, regola){
+    const tetto = regola.tetto > 0 ? regola.tetto : Infinity;
+    const righe = prenotazioni.map(b=>{
+      const notti = nightsBetween(b.checkin, b.checkout);
+      const contate = Math.min(notti, tetto);
+      const ospiti = Number(b.guests || 0);
+      const esenti = Math.min(Number(b.guestsExempt || 0), ospiti);
+      const imponibili = contate * Math.max(0, ospiti - esenti);
+      const canale = b.channel || 'Diretta';
+      return {
+        ...b, notti, contate, ospiti, esenti, imponibili, canale,
+        lorde: notti * ospiti,
+        tassa: Math.round(imponibili * regola.tariffa * 100) / 100,
+        laVersaLaPiattaforma: regola.airbnbVersa && canale === 'Airbnb'
+      };
+    });
+
+    const somma = f => righe.reduce((t,r)=>t+f(r), 0);
+    const perCanale = {};
+    righe.forEach(r=>{
+      if(!perCanale[r.canale]) perCanale[r.canale] = {canale:r.canale, imponibili:0, tassa:0, laVersaLaPiattaforma:r.laVersaLaPiattaforma};
+      perCanale[r.canale].imponibili += r.imponibili;
+      perCanale[r.canale].tassa = Math.round((perCanale[r.canale].tassa + r.tassa) * 100) / 100;
+    });
+    const canali = Object.values(perCanale).sort((a,b)=>b.tassa-a.tassa);
+    const versataDallaPiattaforma = Math.round(canali.filter(c=>c.laVersaLaPiattaforma).reduce((t,c)=>t+c.tassa,0) * 100) / 100;
+    const dovuta = Math.round(somma(r=>r.tassa) * 100) / 100;
+
+    return {
+      righe, canali,
+      lorde: somma(r=>r.lorde),
+      escluseTetto: somma(r=>(r.notti - r.contate) * r.ospiti),
+      esenti: somma(r=>r.contate * r.esenti),
+      imponibili: somma(r=>r.imponibili),
+      dovuta,                                  // da dichiarare al Comune
+      versataDallaPiattaforma,                 // già versata per tuo conto
+      daVersare: Math.round((dovuta - versataDallaPiattaforma) * 100) / 100
+    };
+  }
+
+  function regolaDi(p){
+    const r = p.imposta || {};
+    return {
+      tariffa: Number(r.tariffa || 0),
+      tetto: Number(r.tetto || 0),
+      airbnbVersa: r.airbnbVersa !== false,
+      fonte: r.fonte || '',
+      verificatoIl: r.verificatoIl || ''
+    };
+  }
+
+  function periodiDisponibili(p){
+    const mesi = [...new Set((p.bookings||[])
+      .filter(b=>b.status!=='cancellata' && b.checkin)
+      .map(b=>b.checkin.slice(0,7)))].sort().reverse();
+    return mesi.length ? mesi : [todayISO.slice(0,7)];
+  }
+
+  function renderImposta(p){
+    const regola = regolaDi(p);
+    const sel = document.getElementById('impPeriodo');
+    if(!sel) return;
+
+    // il selettore dei periodi si popola una volta per struttura
+    const periodi = periodiDisponibili(p);
+    if(sel.dataset.prop !== p.id){
+      sel.innerHTML = periodi.map(m=>{
+        const [a,ms] = m.split('-');
+        const nome = new Date(a+'-'+ms+'-01T00:00:00').toLocaleDateString('it-IT',{month:'long', year:'numeric'});
+        return `<option value="${m}">${nome}</option>`;
+      }).join('');
+      sel.dataset.prop = p.id;
+    }
+    const periodo = sel.value || periodi[0];
+
+    // i campi del regolamento
+    document.getElementById('impTariffa').value = regola.tariffa || '';
+    document.getElementById('impTetto').value = regola.tetto || '';
+    document.getElementById('impAirbnb').value = regola.airbnbVersa ? 'si' : 'no';
+    document.getElementById('impFonte').value = regola.fonte;
+    document.getElementById('impVerificato').value = regola.verificatoIl;
+
+    const stato = document.getElementById('impStatoRegola');
+    if(!regola.tariffa){
+      stato.innerHTML = '<strong>Regolamento da inserire.</strong> Senza la tariffa il conto non si può fare.';
+    } else if(!regola.verificatoIl){
+      stato.innerHTML = 'Regolamento inserito, ma <strong>senza data di verifica</strong>: segna quando l\'hai controllato.';
+    } else {
+      const giorni = Math.round((new Date(todayISO) - new Date(regola.verificatoIl)) / 86400000);
+      stato.innerHTML = giorni > 365
+        ? `<strong>Verificato ${Math.floor(giorni/365)} anno/i fa.</strong> Le tariffe cambiano: ricontrolla il regolamento.`
+        : `Verificato il ${fmtDate(regola.verificatoIl)}${regola.fonte ? ` · <a href="${escapeHtml(regola.fonte)}" target="_blank" rel="noopener">regolamento</a>` : ''}.`;
+    }
+
+    const delPeriodo = (p.bookings||[]).filter(b=>
+      b.status!=='cancellata' && b.checkin && b.checkin.slice(0,7)===periodo);
+    const c = calcolaImposta(delPeriodo, regola);
+
+    document.getElementById('impStats').innerHTML = [
+      ["Notti lorde", c.lorde],
+      ["Escluse", c.escluseTetto + c.esenti],
+      ["Notti imponibili", c.imponibili],
+      ["Da versare", fmtEuro(c.daVersare)]
+    ].map(([k,v])=>`<div class="stat-card"><div class="stat-label">${k}</div><div class="stat-value">${v}</div></div>`).join('');
+
+    document.getElementById('impRiepilogo').innerHTML = `
+      <tr><td>Notti vendute (persona × notte)</td><td style="text-align:right">${c.lorde}</td></tr>
+      <tr><td>Escluse perché oltre il tetto di notti</td><td style="text-align:right">− ${c.escluseTetto}</td></tr>
+      <tr><td>Escluse perché esenti</td><td style="text-align:right">− ${c.esenti}</td></tr>
+      <tr><td><strong>Notti imponibili</strong></td><td style="text-align:right"><strong>${c.imponibili}</strong></td></tr>
+      <tr><td><strong>Tassa dovuta al Comune</strong></td><td style="text-align:right"><strong>${fmtEuro(c.dovuta)}</strong></td></tr>
+      <tr><td>di cui già versata dalla piattaforma</td><td style="text-align:right">− ${fmtEuro(c.versataDallaPiattaforma)}</td></tr>
+      <tr><td><strong>Resta da versare</strong></td><td style="text-align:right"><strong>${fmtEuro(c.daVersare)}</strong></td></tr>`;
+
+    // Le prenotazioni inserite prima che esistessero i campi "ospiti" e "canale"
+    // risultano a zero: meglio dirlo, altrimenti il totale sembra giusto e non lo e'.
+    const senzaOspiti = delPeriodo.filter(b => !Number(b.guests)).length;
+    const avvisoDati = senzaOspiti > 0
+      ? `<br><strong style="color:var(--danger)">Attenzione: ${senzaOspiti} prenotazion${senzaOspiti===1?'e':'i'} di questo periodo non ha${senzaOspiti===1?'':'nno'} il numero di ospiti, quindi non entra${senzaOspiti===1?'':'no'} nel conto.</strong> Aprila e compila il campo "Ospiti".`
+      : '';
+
+    document.getElementById('impAvviso').innerHTML = (c.versataDallaPiattaforma > 0
+      ? `Nel modulo per il Comune va dichiarato <strong>${fmtEuro(c.dovuta)}</strong>, non ${fmtEuro(c.daVersare)}: il totale, indicando la quota già versata dalla piattaforma. Versare il totale significa pagare due volte; dichiarare solo la tua quota è una dichiarazione incompleta.`
+      : 'Tutta la tassa di questo periodo è a tuo carico: nessuna piattaforma l\'ha versata per te.') + avvisoDati;
+
+    document.getElementById('impCanali').innerHTML = c.canali.length
+      ? c.canali.map(x=>`<tr><td>${escapeHtml(x.canale)}</td><td>${x.imponibili}</td><td>${fmtEuro(x.tassa)}</td>
+          <td>${x.laVersaLaPiattaforma ? 'La piattaforma' : '<strong>Tu</strong>'}</td></tr>`).join('')
+      : '<tr><td colspan="4" class="muted">Nessuna prenotazione in questo periodo.</td></tr>';
+
+    document.getElementById('impRighe').innerHTML = c.righe.length
+      ? c.righe.map(r=>`<tr><td>${escapeHtml(r.guestName||'')}</td><td>${fmtDate(r.checkin)}</td><td>${r.notti}</td>
+          <td>${r.ospiti}${r.esenti ? ` <span class="muted">(${r.esenti} esenti)</span>` : ''}</td>
+          <td>${escapeHtml(r.canale)}</td><td>${r.imponibili}</td><td>${fmtEuro(r.tassa)}</td></tr>`).join('')
+      : '<tr><td colspan="7" class="muted">Nessuna prenotazione in questo periodo.</td></tr>';
+
+    document.getElementById('impPeriodo').value = periodo;
+
+    // Il proprietario vede il conto ma non tocca il regolamento: quello lo
+    // imposta chi gestisce, perche' un valore sbagliato falsa la dichiarazione.
+    const soloLettura = currentUserRole === 'cliente';
+    ['impTariffa','impTetto','impAirbnb','impFonte','impVerificato'].forEach(id=>{
+      document.getElementById(id).disabled = soloLettura;
+    });
+    document.getElementById('impSalva').classList.toggle('hidden', soloLettura);
+  }
+
+  document.getElementById('impSalva').addEventListener('click', async ()=>{
+    const p = currentProperty(); if(!p) return;
+    p.imposta = {
+      tariffa: Number(document.getElementById('impTariffa').value || 0),
+      tetto: Number(document.getElementById('impTetto').value || 0),
+      airbnbVersa: document.getElementById('impAirbnb').value === 'si',
+      fonte: document.getElementById('impFonte').value.trim(),
+      verificatoIl: document.getElementById('impVerificato').value
+    };
+    await saveData();
+    renderImposta(p);
+    toast('Regolamento salvato per ' + p.city + '.', 'ok');
+  });
+
+  document.getElementById('impPeriodo').addEventListener('change', ()=>{
+    const p = currentProperty(); if(p) renderImposta(p);
+  });
+
+  document.getElementById('impEsporta').addEventListener('click', ()=>{
+    const p = currentProperty(); if(!p) return;
+    const periodo = document.getElementById('impPeriodo').value;
+    const delPeriodo = (p.bookings||[]).filter(b=>
+      b.status!=='cancellata' && b.checkin && b.checkin.slice(0,7)===periodo);
+    const c = calcolaImposta(delPeriodo, regolaDi(p));
+    const righe = [['ospite','checkin','checkout','notti','ospiti','esenti','canale','notti_imponibili','tassa','la_versa']]
+      .concat(c.righe.map(r=>[r.guestName, r.checkin, r.checkout, r.notti, r.ospiti, r.esenti, r.canale,
+                              r.imponibili, String(r.tassa).replace('.',','),
+                              r.laVersaLaPiattaforma ? 'piattaforma' : 'gestore']));
+    downloadFile(`ostella-tassa-soggiorno-${p.city}-${periodo}.csv`,
+                 righe.map(r=>r.join(';')).join('\n'), 'text/csv');
   });
 
   // ---------- PORTFOLIO RENDER ----------
@@ -3521,6 +3807,7 @@
     renderRevenue(p);
     renderGuests(p);
     renderReviews(p);
+    renderImposta(p);
     // Il proprietario è in sola lettura: nascondo le azioni di modifica del calendario e delle pulizie.
     const isClient = currentUserRole === 'cliente';
     const bookingsTools = document.getElementById('bookingsTools');
@@ -4403,6 +4690,13 @@
           </div>
           <div class="field"><label>Importo totale (€)</label><input required type="number" min="0" name="price" value="${booking?booking.price:0}"></div>
         </div>
+        <div class="field-row">
+          <div class="field"><label>Ospiti</label><input type="number" min="0" name="guests" value="${booking&&booking.guests!=null?booking.guests:1}" title="Serve per calcolare la tassa di soggiorno: si paga a persona per notte"></div>
+          <div class="field"><label>di cui esenti</label><input type="number" min="0" name="guestsExempt" value="${booking&&booking.guestsExempt!=null?booking.guestsExempt:0}" title="Minori sotto l'età prevista dal Comune, o altre esenzioni"></div>
+          <div class="field"><label>Canale</label><select name="channel">
+            ${['Airbnb','Booking.com','Vrbo','Diretta','Altro'].map(c=>`<option value="${c}"${(booking&&booking.channel||'Diretta')===c?' selected':''}>${c}</option>`).join('')}
+          </select></div>
+        </div>
         <div class="modal-actions">
           <button type="button" class="btn btn-ghost" id="cancelBooking">Annulla</button>
           <button type="submit" class="btn btn-primary">Salva</button>
@@ -4417,7 +4711,9 @@
       const data = {
         guestName: fd.get('guestName').trim(), phone: fd.get('phone').trim(), email: fd.get('email').trim(),
         roomId: fd.get('roomId'), checkin: fd.get('checkin'), checkout: fd.get('checkout'),
-        status: fd.get('status'), price: Number(fd.get('price'))
+        status: fd.get('status'), price: Number(fd.get('price')),
+        guests: Number(fd.get('guests')||0), guestsExempt: Number(fd.get('guestsExempt')||0),
+        channel: fd.get('channel') || 'Diretta'
       };
       if(!data.checkin || !data.checkout || data.checkout <= data.checkin){
         toast('La data di check-out deve essere successiva al check-in.', 'warn');
